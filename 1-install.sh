@@ -45,6 +45,7 @@ PKGS=(
 pkg_or_aur adwaita-qt6   # tema oscuro para apps Qt
 pkg_or_aur swappy        # anotar capturas (W-Print)
 pkg_or_aur phinger-cursors #tema cursor
+
 # CPU → microcódigo
 UCODE=""
 if   grep -q GenuineIntel /proc/cpuinfo; then PKGS+=(intel-ucode); UCODE=intel; if in_repo sof-firmware; then PKGS+=(sof-firmware); fi   # audio de portátiles Intel recientes

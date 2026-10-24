@@ -10,7 +10,7 @@ XKB_DEFAULT_LAYOUT=latam
 XKB_DEFAULT_VARIANT=deadtilde
 
 # Cursor
-XCURSOR_THEME=Phinger-Cursors
+XCURSOR_THEME=Phinger-Cursors-Dark
 XCURSOR_SIZE=24
 
 # Toolkits en Wayland nativo, con XWayland de respaldo.
@@ -18,7 +18,7 @@ XCURSOR_SIZE=24
 GDK_BACKEND=wayland,x11
 QT_QPA_PLATFORM=wayland;xcb
 # Apps Qt en oscuro (paquete adwaita-qt6; si no está instalado, Qt usa su estilo por defecto)
-QT_STYLE_OVERRIDE=Adwaita-Dark
+QT_STYLE_OVERRIDE=Phinger-Cursors-Dark
 QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 ELECTRON_OZONE_PLATFORM_HINT=auto
 
