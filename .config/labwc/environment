@@ -10,7 +10,7 @@ XKB_DEFAULT_LAYOUT=latam
 XKB_DEFAULT_VARIANT=deadtilde
 
 # Cursor
-XCURSOR_THEME=Adwaita
+XCURSOR_THEME=Phinger-Cursors
 XCURSOR_SIZE=24
 
 # Toolkits en Wayland nativo, con XWayland de respaldo.

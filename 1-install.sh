@@ -18,8 +18,8 @@ pkg_or_aur() { if in_repo "$1"; then PKGS+=("$1"); else AUR+=("$1"); fi; }
 # ---------- paquetes base (repos oficiales) ----------
 PKGS=(
   # escritorio
-  labwc waybar fuzzel foot mako swaylock swayidle swaybg
-  cliphist wl-clipboard grim slurp brightnessctl libnotify
+  labwc waybar fuzzel foot mako swaylock swayidle swaybg wf-recorder polkit
+  cliphist wl-clipboard grim slurp brightnessctl libnotify libreoffice-still-es yt-dlp
   xorg-xwayland qt6-wayland dconf polkit-gnome xdg-utils wlr-randr
   xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-gtk xdg-user-dirs
   # audio y red (TUIs en vez de apps GTK: wiremix sustituye a pavucontrol)
@@ -34,7 +34,7 @@ PKGS=(
   # login
   greetd greetd-tuigreet
   # apariencia
-  adw-gtk-theme adwaita-cursors papirus-icon-theme
+  adw-gtk-theme papirus-icon-theme
   ttf-jetbrains-mono-nerd ttf-liberation ttf-dejavu noto-fonts-emoji
   # mantenimiento
   pacman-contrib playerctl
@@ -44,7 +44,7 @@ PKGS=(
 # ---------- hardware: se instala solo lo que tu equipo usa ----------
 pkg_or_aur adwaita-qt6   # tema oscuro para apps Qt
 pkg_or_aur swappy        # anotar capturas (W-Print)
-
+pkg_or_aur phinger-cursors #tema cursor
 # CPU → microcódigo
 UCODE=""
 if   grep -q GenuineIntel /proc/cpuinfo; then PKGS+=(intel-ucode); UCODE=intel; if in_repo sof-firmware; then PKGS+=(sof-firmware); fi   # audio de portátiles Intel recientes
