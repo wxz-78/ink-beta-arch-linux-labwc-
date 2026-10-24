@@ -7,17 +7,17 @@ run() { command -v "$1" >/dev/null 2>&1 && "$@" >/dev/null 2>&1 & }
 
 # Variables que necesitan los portales XDG y los servicios D-Bus (solo las justas)
 dbus-update-activation-environment --systemd \
-    WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE
+  WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE
 
 # Tema de apps GTK/libadwaita (en segundo plano: no retrasa el arranque del escritorio)
 (
-    gs() { gsettings set org.gnome.desktop.interface "$@"; }
-    gs color-scheme        'prefer-dark'
-    gs gtk-theme           'adw-gtk3-dark'
-    gs icon-theme          'Papirus-Dark'
-    gs cursor-theme        'Adwaita'
-    gs font-name           'JetBrainsMono Nerd Font 10'
-    gs monospace-font-name 'JetBrainsMono Nerd Font 10'
+  gs() { gsettings set org.gnome.desktop.interface "$@"; }
+  gs color-scheme 'prefer-dark'
+  gs gtk-theme 'adw-gtk3-dark'
+  gs icon-theme 'Papirus-Dark'
+  gs cursor-theme 'Adwaita'
+  gs font-name 'JetBrainsMono Nerd Font 10'
+  gs monospace-font-name 'JetBrainsMono Nerd Font 10'
 ) >/dev/null 2>&1 &
 
 # Monitores: labwc usa el modo preferido de cada pantalla. Para escala o posición,
@@ -27,13 +27,16 @@ dbus-update-activation-environment --systemd \
 
 # Fondo: primero el tuyo (4.jpeg), si no el del repo (ink.png). Si no hay ninguno, negro liso.
 bg=""
-for f in "$HOME/.local/share/backgrounds/4.jpeg" "$HOME/.local/share/backgrounds/ink.png"; do
-    if [ -f "$f" ]; then bg="$f"; break; fi
+for f in "$HOME/.local/share/backgrounds/3.jpeg" "$HOME/.local/share/backgrounds/4.jpeg"; do
+  if [ -f "$f" ]; then
+    bg="$f"
+    break
+  fi
 done
 if [ -n "$bg" ]; then
-    run swaybg -i "$bg" -m fill -c 0a0a0a
+  run swaybg -i "$bg" -m fill -c 0a0a0a
 else
-    run swaybg -c 0a0a0a
+  run swaybg -c 0a0a0a
 fi
 
 run mako
@@ -43,14 +46,14 @@ run waybar
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Historial del portapapeles (texto e imágenes)
-run wl-paste --type text  --watch cliphist store
+run wl-paste --type text --watch cliphist store
 run wl-paste --type image --watch cliphist store
 
 # Inactividad: 5 min bloquea · 5:30 apaga la pantalla (wlopm, si existe) · 15 min suspende (solo con batería).
 # Un solo swayidle; `lock` evita bloquear dos veces. Respeta el botón «pantalla siempre encendida» de waybar.
 set -- -w timeout 300 lock
 if command -v wlopm >/dev/null 2>&1; then
-    set -- "$@" timeout 330 "wlopm --off '*'" resume "wlopm --on '*'"
+  set -- "$@" timeout 330 "wlopm --off '*'" resume "wlopm --on '*'"
 fi
 set -- "$@" timeout 900 idle-suspend before-sleep lock after-resume "wlopm --on '*'" lock lock
 run swayidle "$@"
